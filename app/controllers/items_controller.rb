@@ -12,6 +12,11 @@ class ItemsController < ApplicationController
     render partial: 'items/ajax_item', locals: {item: @item}
   end
 
+  def update
+    @item.update(item_params)
+    redirect_to directory_path(@directory)
+  end
+
   def destroy
     destoryed_item = @item
     @item.destroy
