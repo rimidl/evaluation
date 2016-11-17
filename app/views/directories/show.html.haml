@@ -14,19 +14,19 @@
 
 %h3 Files
 
-.table-responsive
-  %table.table.table-striped.table-bordered.table-hover
-    %thead
-      %tr
-        %th
-        %th Name
-        %th Labels
-        %th
-        %th
+= simple_form_for @directory do |f|
+  %p= f.submit 'Destroy', class: 'btn btn-danger'
 
-    %tbody.js-files
-      = simple_form_for @directory do |f|
-        %p
-          = f.submit 'Destroy'
-        = f.simple_fields_for :items, @directory.items.order(created_at: :desc) do |item|
-          = render 'items/item', item: item.object, f: item
+  .table-responsive
+    %table.table.table-striped.table-bordered.table-hover
+      %thead
+        %tr
+          %th
+          %th Name
+          %th Labels
+          %th
+          %th
+
+      %tbody.js-files
+        - @directory.items.order(created_at: :desc).each do |item|
+          = render 'items/item', item: item, f: f

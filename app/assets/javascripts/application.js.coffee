@@ -14,4 +14,4 @@ $ ->
       add: (e, data) ->
         data.submit()
       done: (e, data) ->
-        $('.js-files').append $(data.result)
+        $('.js-files').prepend $(data.result)

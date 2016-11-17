@@ -9,12 +9,7 @@ class ItemsController < ApplicationController
   def create
     @item = @directory.items.create(item_params)
     track('file:created', @item)
-    render @item
-  end
-
-  def update
-    @item.update(item_params)
-    redirect_to directory_path(@directory)
+    render partial: 'items/ajax_item', locals: {item: @item}
   end
 
   def destroy
