@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :directory
+  has_many :comments, as: :commentable
 
   mount_uploader :file, FileUploader
 

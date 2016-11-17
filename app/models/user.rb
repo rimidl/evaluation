@@ -15,5 +15,5 @@ class User < ApplicationRecord
   has_many :linked_directories, class_name: 'Directory', through: :directory_permissions
 
   has_many :directories
-
+  has_many :comments
 end
