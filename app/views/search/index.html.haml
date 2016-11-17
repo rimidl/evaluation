@@ -1,7 +1,7 @@
 %h1 Search
 
 = simple_form_for :search, url: search_index_path, method: :get do |f|
-  = f.input :labels, collection: ActsAsTaggableOn::Tag.all.map {|l| l.name }, as: :check_boxes, checked: params[:search][:labels]
+  = f.input :labels, collection: ActsAsTaggableOn::Tag.all.map(&:name), as: :check_boxes, checked: params[:search][:labels]
   = f.submit
 
 %h3 Items
