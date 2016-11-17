@@ -10,4 +10,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  has_many :directory_permissions
+  has_many :linked_directories, class_name: 'Directory', through: :directory_permissions
+
+  has_many :directories
+
 end

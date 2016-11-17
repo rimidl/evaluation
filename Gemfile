@@ -29,6 +29,7 @@ gem 'pg'
 gem 'pundit'
 gem 'simple_form'
 gem 'carrierwave'
+gem 'cocoon'
 
 group :development do
   gem 'better_errors'
