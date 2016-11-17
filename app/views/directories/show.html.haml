@@ -5,9 +5,11 @@
   = link_to edit_directory_path(@directory), class: 'btn btn-primary' do
     %span.glyphicon.glyphicon-pencil
     Edit
-  = link_to new_directory_item_path(@directory), class: 'btn btn-primary' do
-    %span.glyphicon.glyphicon-plus
-    Add files
+  = form_for [@directory, Item.new], multipart: true, html: { class: 'js-file-upload-form', data: { type: 'json' } } do |f|
+    %span.btn.btn-success.fileinput-button.add
+      %i.icon-picture
+      Upload files
+      = f.file_field :image, multiple: true, name: 'item[file]', class: 'js-file-uploader'
   %h1= @directory.name
 
 %h3 Files
@@ -21,10 +23,5 @@
         %th
         %th
 
-    %tbody
-      - @directory.items.order(created_at: :desc).each do |item|
-        %tr
-          %td= link_to File.basename(item.file.path), item.file.url
-          %td= link_to 'Show', [@directory, item]
-          -#%td= link_to 'Edit', edit_directory_path(directory)
-          %td= link_to 'Destroy', [@directory, item], data: { confirm: 'Are you sure?' }, method: :delete
+    %tbody.js-files
+      = render @directory.items.order(created_at: :desc)

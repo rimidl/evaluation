@@ -26,6 +26,7 @@ gem 'cocoon'
 
 group :development do
   gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'html2haml'
   gem 'rails_layout'
   gem 'spring-commands-rspec'
