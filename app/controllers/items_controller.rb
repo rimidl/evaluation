@@ -27,6 +27,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:file)
+    params.require(:item).permit(:id, :file)
   end
 end
