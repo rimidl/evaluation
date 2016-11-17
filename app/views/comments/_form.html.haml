@@ -1,0 +1,3 @@
+= simple_form_for Comment.new, as: :comment, url: [directory, item, :comments] do |f|
+  = f.input :content, as: :text, label: "New comment"
+  = f.submit class: "btn btn-small btn-primary"
