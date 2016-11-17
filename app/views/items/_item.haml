@@ -1,5 +1,8 @@
 %tr
   %td= f.input :_destroy, as: :boolean, label: false
   %td= link_to File.basename(item.file.path), item.file.url
+  %td
+    - item.labels.pluck(:name).each do |label_name|
+      = link_to label_name, search_index_path(search: {labels: label_name})
   %td= link_to 'Show', [@directory, item]
   %td= link_to 'Destroy', [@directory, item], data: { confirm: 'Are you sure?' }, method: :delete

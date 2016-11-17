@@ -1,0 +1,25 @@
+%h1 Search
+
+= simple_form_for :search, url: search_index_path, method: :get do |f|
+  = f.input :labels, collection: ActsAsTaggableOn::Tag.all.map(&:name), as: :check_boxes, checked: params[:search][:labels]
+  = f.submit
+
+%h3 Items
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th
+        %th Name
+        %th Labels
+        %th
+        %th
+
+    %tbody.js-files
+      - @items.each do |item|
+        %tr
+          %td= link_to File.basename(item.file.path), item.file.url
+          %td= item.labels.pluck(:name).join(', ')
+          %td= link_to 'Show', [item.directory, item]
+          %td= link_to 'Destroy', [item.directory, item], data: { confirm: 'Are you sure?' }, method: :delete

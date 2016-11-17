@@ -16,6 +16,7 @@
 %p
   #labels
     = simple_form_for [@directory, @item] do |f|
+      = f.input :id, as: :hidden
       = f.simple_fields_for :labels do |label_field|
         = render 'label_fields', f: label_field
       .links

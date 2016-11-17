@@ -7,4 +7,6 @@ Rails.application.routes.draw do
     resources :items, only: [:new, :show, :create, :update, :destroy]
   end
 
+  resources :search, only: [:index]
+
 end
