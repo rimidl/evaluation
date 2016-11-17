@@ -1,0 +1,7 @@
+%p
+  = link_to 'new directory', new_directory_path
+- @directories.each do |directory|
+  %p
+    = link_to directory.name, directory_path(directory)
+    = link_to 'edit', edit_directory_path(directory)
+    = link_to 'destroy', directory_path(directory), method: :delete, data: { confirm: 'Are you sure?' }
