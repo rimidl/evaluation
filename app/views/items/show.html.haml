@@ -7,11 +7,6 @@
 %dl.dl-horizontal
   = link_to image_tag(@item.file.thumb), @item.file.url
 
-- if @item.comments.present?
-  %hr
-  %h4 Comments
-  = render @item.comments
-
 %h3 Labels
 %p
   #labels
@@ -23,6 +18,11 @@
         = link_to_add_association 'add label', f, :labels
       %p
         = f.submit
+
+- if @item.comments.present?
+  %hr
+  %h4 Comments
+  = render @item.comments
 
 %hr
 = render "comments/form", directory: @directory, item: @item
