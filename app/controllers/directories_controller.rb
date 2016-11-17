@@ -23,6 +23,7 @@ class DirectoriesController < ApplicationController
     @directory = Directory.new(directory_params)
     @directory.user = current_user
     if @directory.save
+      ahoy.track 'directory:created', {directory: { id: @directory.id, name: @directory.name }}
       redirect_to directories_path
     else
       render :new
@@ -31,6 +32,7 @@ class DirectoriesController < ApplicationController
 
   def update
     if @directory.update(directory_params)
+      ahoy.track 'directory:updated', {directory: { id: @directory.id, name: @directory.name }}
       redirect_to directory_path(@directory)
     else
       render :edit
@@ -38,7 +40,9 @@ class DirectoriesController < ApplicationController
   end
 
   def destroy
+    directory = @directory
     @directory.destroy
+    ahoy.track 'directory:destroyed', {directory: { id: directory.id, name: directory.name }}
     redirect_to directories_path
   end
 

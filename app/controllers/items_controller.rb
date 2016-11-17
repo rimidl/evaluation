@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = @directory.items.create(item_params)
+    ahoy.track 'file:created', {id: @item.id, title: File.basename(@item.file.path)}
     render @item
   end
 
@@ -17,7 +18,10 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    id = @item.id
+    filename = File.basename(@item.file.path)
     @item.destroy
+    ahoy.track 'file:destroyed', {id: id, title: filename}
     redirect_to directory_path(@directory)
   end
 

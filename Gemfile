@@ -24,6 +24,7 @@ gem 'simple_form'
 gem 'carrierwave'
 gem 'cocoon'
 gem 'acts-as-taggable-on', '~> 4.0'
+gem 'ahoy_matey'
 
 group :development do
   gem 'better_errors'

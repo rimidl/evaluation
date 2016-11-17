@@ -10,6 +10,7 @@
       = link_to 'Home', root_path, class: 'navbar-brand'
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
-        %li= link_to 'Directories', directories_path
+        - if current_user
+          %li= link_to 'Directories', directories_path
       %ul.nav.navbar-nav.pull-right
         = render 'layouts/nav_links_for_auth'
