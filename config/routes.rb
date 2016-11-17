@@ -4,11 +4,10 @@ Rails.application.routes.draw do
   resources :users
 
   resources :directories do
-    resources :items, only: [:new, :show, :create, :update, :destroy]
+    resources :items, only: [:new, :show, :create, :update, :destroy] do
       resources :comments, only: [:create, :destroy]
     end
   end
 
   resources :search, only: [:index]
-
 end
