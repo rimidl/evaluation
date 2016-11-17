@@ -16,7 +16,7 @@
 
 = simple_form_for @directory do |f|
   %p= f.submit 'Destroy', class: 'btn btn-danger'
-
+  = f.input :id, as: :hidden
   .table-responsive
     %table.table.table-striped.table-bordered.table-hover
       %thead
