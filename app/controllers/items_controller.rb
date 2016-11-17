@@ -11,6 +11,11 @@ class ItemsController < ApplicationController
     render @item
   end
 
+  def update
+    @item.update(item_params)
+    redirect_to directory_path(@directory)
+  end
+
   def destroy
     @item.destroy
     redirect_to directory_path(@directory)
@@ -27,6 +32,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:id, :file)
+    params.require(:item).permit(:id, :file, labels_attributes: [:id, :name, :_destroy])
   end
 end
