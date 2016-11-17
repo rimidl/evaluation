@@ -305,8 +305,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ahoy_matey
   acts-as-taggable-on (~> 4.0)
+  ahoy_matey
   better_errors
   binding_of_caller
   bootstrap-generators!

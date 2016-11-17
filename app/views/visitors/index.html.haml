@@ -7,14 +7,21 @@
     %p
       - case event.name
       - when 'directory:created'
-        User #{event&.user&.email} created folder #{link_to "#{event.properties['directory']['name']}", Directory.find(event.properties['directory']['id'])} at #{l event.time, format: :long}
+        - directory = Directory.where(id: event.properties['directory']['id']).first
+        - if directory
+          User #{event&.user&.email} created folder #{link_to "#{event.properties['directory']['name']}", directory} at #{l event.time, format: :long}
+        - else
+          User #{event&.user&.email} created folder "#{event.properties['directory']['name']}" at #{l event.time, format: :long}
       - when 'directory:updated'
-        User #{event&.user&.email} updated folder #{link_to "#{event.properties['directory']['name']}", Directory.find(event.properties['directory']['id'])} at #{l event.time, format: :long}
+        - directory = Directory.where(id: event.properties['directory']['id']).first
+        - if directory
+          User #{event&.user&.email} updated folder #{link_to "#{event.properties['directory']['name']}", directory} at #{l event.time, format: :long}
       - when 'directory:destroyed'
         User #{event&.user&.email} destroyed folder #{event.properties['directory']['name']} at #{l event.time, format: :long}
       - when 'file:created'
-        - item = Item.find(event.properties['id'])
-        User #{event&.user&.email} created file #{link_to "#{event.properties['title']}", [item.directory, item]} at #{l event.time, format: :long}
+        - item = Item.where(id: event.properties['id']).first
+        - if item
+          User #{event&.user&.email} created file #{link_to "#{event.properties['title']}", [item.directory, item]} at #{l event.time, format: :long}
       - when 'file:destroyed'
         User #{event&.user&.email} destroyed file #{event.properties['title']} at #{l event.time, format: :long}
       - else
