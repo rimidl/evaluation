@@ -11,6 +11,10 @@
   %dt Name:
   %dd= @item.name
 
+- if @item.comments.present?
+  %hr
+  %h4 Comments
+  = render @item.comments
 
 %h3 Labels
 %p
@@ -23,3 +27,6 @@
         = link_to_add_association 'add label', f, :labels
       %p
         = f.submit
+
+%hr
+= render "comments/form", directory: @directory, item: @item

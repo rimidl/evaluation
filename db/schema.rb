@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 20161117132215) do
     t.index ["visit_id", "name"], name: "index_ahoy_events_on_visit_id_and_name", using: :btree
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string  "content",          null: false
+    t.integer "commentable_id"
+    t.string  "commentable_type"
+    t.integer "user_id"
+    t.string  "ancestry"
+    t.index ["ancestry"], name: "index_comments_on_ancestry", using: :btree
+    t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
+  end
+
   create_table "directories", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
