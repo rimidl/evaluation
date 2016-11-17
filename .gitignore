@@ -84,6 +84,5 @@ pickle-email-*.html
 *~
 
 /docker_dev
-config/secrets.yml
 public/uploads
 config/database.yml
