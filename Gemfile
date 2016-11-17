@@ -23,6 +23,7 @@ gem 'pundit'
 gem 'simple_form'
 gem 'carrierwave'
 gem 'cocoon'
+gem 'acts-as-taggable-on', '~> 4.0'
 
 group :development do
   gem 'better_errors'
