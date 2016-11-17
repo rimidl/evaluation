@@ -1,0 +1,8 @@
+- block = nil
+- simple_form_for item.directory do |f|
+  - f.simple_fields_for :items, item do |ff|
+    - block = capture do
+      = render 'items/item', item: ff.object, f: ff
+
+= block
+
