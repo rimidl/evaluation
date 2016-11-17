@@ -2,9 +2,7 @@ class CommentsController < ApplicationController
   before_action :find_item, only: :create
 
   def create
-    p "===>>>"
-    p current_user
-    @item.comments.create!(comment_params.merge(user: current_user))
+    @item.comments.create(comment_params.merge(user: current_user))
     redirect_to :back
   end
 
