@@ -1,4 +1,13 @@
 = simple_form_for @directory do |f|
   = f.input :name
   = f.input :description
+
+  %h3 Permissions
+  %p
+    #permissions
+      = f.simple_fields_for :directory_permissions do |permission|
+        = render 'directory_permission_fields', f: permission
+      .links
+        = link_to_add_association 'add permission', f, :directory_permissions
+
   = f.submit

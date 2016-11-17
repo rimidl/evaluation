@@ -1,9 +1,10 @@
 class DirectoriesController < ApplicationController
 
   before_filter :find_directory
+  before_filter :authorize_directory
 
   def index
-    @directories = Directory.order(created_at: :desc)
+    @directories = current_user.directories.order(created_at: :desc)
   end
 
   def show
@@ -20,6 +21,7 @@ class DirectoriesController < ApplicationController
 
   def create
     @directory = Directory.new(directory_params)
+    @directory.user = current_user
     if @directory.save
       redirect_to directories_path
     else
@@ -46,8 +48,12 @@ class DirectoriesController < ApplicationController
     @directory = Directory.find(params[:id]) if params[:id]
   end
 
+  def authorize_directory
+    authorize @directory if @directory
+  end
+
   def directory_params
-    params.require(:directory).permit(:name, :description)
+    params.require(:directory).permit(:name, :description, directory_permissions_attributes: [:id, :user_id, :_destroy])
   end
 
 end
