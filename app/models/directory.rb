@@ -8,5 +8,6 @@ class Directory < ApplicationRecord
   belongs_to :user
 
   accepts_nested_attributes_for :directory_permissions, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :items, reject_if: :all_blank, allow_destroy: true
 
 end

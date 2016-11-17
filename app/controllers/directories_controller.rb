@@ -31,7 +31,7 @@ class DirectoriesController < ApplicationController
 
   def update
     if @directory.update(directory_params)
-      redirect_to directories_path
+      redirect_to directory_path(@directory)
     else
       render :edit
     end
@@ -53,7 +53,8 @@ class DirectoriesController < ApplicationController
   end
 
   def directory_params
-    params.require(:directory).permit(:name, :description, directory_permissions_attributes: [:id, :user_id, :_destroy])
+    params.require(:directory).permit(:name, :description, directory_permissions_attributes: [:id, :user_id, :_destroy],
+                                      items_attributes: [:id, :_destroy])
   end
 
 end
