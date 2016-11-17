@@ -26,6 +26,8 @@ gem 'high_voltage'
 gem 'pg'
 gem 'pundit'
 gem 'simple_form'
+gem 'carrierwave'
+
 group :development do
   gem 'better_errors'
   gem 'html2haml'
