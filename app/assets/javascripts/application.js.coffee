@@ -5,11 +5,13 @@
 #= require bootstrap
 #= require jquery-fileupload/basic
 #= require cocoon
+#= require ahoy
 
 $ ->
-  $('.js-file-uploader').fileupload
-    sequentialUploads: true
-    add: (e, data) ->
-      data.submit()
-    done: (e, data) ->
-      $('.js-files').append $(data.result)
+  document.addEventListener "turbolinks:load", =>
+    $('.js-file-uploader').fileupload
+      sequentialUploads: true
+      add: (e, data) ->
+        data.submit()
+      done: (e, data) ->
+        $('.js-files').append $(data.result)

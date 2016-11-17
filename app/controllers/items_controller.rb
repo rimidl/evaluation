@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = @directory.items.create(item_params)
+    track('file:created', @item)
     render @item
   end
 
@@ -17,11 +18,17 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    destoryed_item = @item
     @item.destroy
+    track('file:destroyed', destoryed_item)
     redirect_to directory_path(@directory)
   end
 
   private
+
+  def track(event, item)
+    ahoy.track event, {id: item.id, title: File.basename(item.file.path)}
+  end
 
   def find_directory
     @directory = Directory.find(params[:directory_id]) if params[:directory_id]
