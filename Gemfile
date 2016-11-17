@@ -26,6 +26,7 @@ gem 'cocoon'
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'ahoy_matey'
 gem 'ancestry'
+gem 'mini_magick'
 
 group :development do
   gem 'better_errors'

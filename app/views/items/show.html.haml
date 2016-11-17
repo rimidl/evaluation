@@ -2,14 +2,10 @@
   = link_to @directory, class: 'btn btn-default' do
     %span.glyphicon.glyphicon-list-alt
     Back
-  -#= link_to [:edit, @directory, @item], class: 'btn btn-primary' do
-  -#  %span.glyphicon.glyphicon-pencil
-  -#  Edit
   %h1 Show item
 
 %dl.dl-horizontal
-  %dt Name:
-  %dd= @item.name
+  = link_to image_tag(@item.file.thumb), @item.file.url
 
 - if @item.comments.present?
   %hr
