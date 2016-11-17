@@ -1,4 +1,8 @@
-= simple_form_for [@directory, @item] do |f|
+= simple_form_for [@directory, @item], html: { class: "form-horizontal", role: "form" } do |f|
+  = f.error_notification
 
-  = f.input :file, input_html: { multiple: true }
-  = f.submit
+  .form-inputs
+    = f.input :file, input_html: { multiple: true }
+
+  .form-actions
+    = f.button :submit

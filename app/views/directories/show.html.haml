@@ -1,9 +1,30 @@
-= @directory.name
-%p
-  = link_to 'add files', new_directory_item_path(@directory)
+.page-header
+  = link_to directories_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_directory_path(@directory), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  = link_to new_directory_item_path(@directory), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    Add files
+  %h1= @directory.name
 
 %h3 Files
-- @directory.items.order(created_at: :desc).each do |item|
-  %p
-    = link_to File.basename(item.file.path), item.file.url
-    = link_to 'destroy', directory_item_path(@directory, item), method: :delete, data: { confirm: 'Are you sure?' }
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Name
+        %th
+        %th
+        %th
+
+    %tbody
+      - @directory.items.order(created_at: :desc).each do |item|
+        %tr
+          %td= link_to File.basename(item.file.path), item.file.url
+          %td= link_to 'Show', [@directory, item]
+          -#%td= link_to 'Edit', edit_directory_path(directory)
+          %td= link_to 'Destroy', [@directory, item], data: { confirm: 'Are you sure?' }, method: :delete
