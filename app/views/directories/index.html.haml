@@ -1,7 +1,22 @@
-%p
-  = link_to 'new directory', new_directory_path
-- @directories.each do |directory|
-  %p
-    = link_to directory.name, directory_path(directory)
-    = link_to 'edit', edit_directory_path(directory)
-    = link_to 'destroy', directory_path(directory), method: :delete, data: { confirm: 'Are you sure?' }
+.page-header
+  = link_to new_directory_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Directory
+  %h1 Listing directories
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Name
+        %th
+        %th
+        %th
+
+    %tbody
+      - @directories.each do |directory|
+        %tr
+          %td= directory.name
+          %td= link_to 'Show', directory
+          %td= link_to 'Edit', edit_directory_path(directory)
+          %td= link_to 'Destroy', directory, data: { confirm: 'Are you sure?' }, method: :delete

@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-
   before_filter :find_directory
   before_filter :find_item
 
@@ -8,10 +7,8 @@ class ItemsController < ApplicationController
   end
 
   def create
-    item_params[:file].each do |file|
-      Item.create(file: file, directory: @directory)
-    end
-    redirect_to directory_path(@directory)
+    @item = @directory.items.create(item_params)
+    render @item
   end
 
   def destroy
@@ -30,7 +27,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(file: [])
+    params.require(:item).permit(:file)
   end
-
 end
